@@ -14,10 +14,10 @@ import android.widget.RelativeLayout
 import com.tbuonomo.viewpagerdotsindicator.BaseDotsIndicator.Type.DEFAULT
 
 class DotsIndicator @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null,
-        defStyleAttr: Int = 0) : BaseDotsIndicator(context, attrs, defStyleAttr) {
+                                              defStyleAttr: Int = 0) : BaseDotsIndicator(context, attrs, defStyleAttr) {
 
   companion object {
-    const val DEFAULT_WIDTH_FACTOR = 2.5f
+    const val DEFAULT_WIDTH_FACTOR = 5.5f
   }
 
   private var linearLayout: LinearLayout? = null
@@ -48,9 +48,9 @@ class DotsIndicator @JvmOverloads constructor(context: Context, attrs: Attribute
 
       selectedDotColor = a.getColor(R.styleable.DotsIndicator_selectedDotColor, DEFAULT_POINT_COLOR)
 
-      dotsWidthFactor = a.getFloat(R.styleable.DotsIndicator_dotsWidthFactor, 2.5f)
+      dotsWidthFactor = a.getFloat(R.styleable.DotsIndicator_dotsWidthFactor, 5.5f)
       if (dotsWidthFactor < 1) {
-        dotsWidthFactor = 2.5f
+        dotsWidthFactor = 5.5f
       }
 
       progressMode = a.getBoolean(R.styleable.DotsIndicator_progressMode, false)
@@ -74,8 +74,8 @@ class DotsIndicator @JvmOverloads constructor(context: Context, attrs: Attribute
       dot.layoutDirection = View.LAYOUT_DIRECTION_LTR
     }
 
-    params.height = dotsSize.toInt()
-    params.width = params.height
+    params.height = 20
+    params.width = 60
     params.setMargins(dotsSpacing.toInt(), 0, dotsSpacing.toInt(), 0)
     val background = DotsGradientDrawable()
     background.cornerRadius = dotsCornerRadius
@@ -107,13 +107,13 @@ class DotsIndicator @JvmOverloads constructor(context: Context, attrs: Attribute
         val selectedDot = dots[selectedPosition]
         // Selected dot
         val selectedDotWidth = (dotsSize + dotsSize * (dotsWidthFactor - 1) * (1 - positionOffset)).toInt()
-        selectedDot.setWidth(selectedDotWidth)
+        selectedDot.setWidth(100)
 
         if (dots.isInBounds(nextPosition)) {
           val nextDot = dots[nextPosition]
 
           val nextDotWidth = (dotsSize + dotsSize * (dotsWidthFactor - 1) * positionOffset).toInt()
-          nextDot.setWidth(nextDotWidth)
+          nextDot.setWidth(60)
 
           val selectedDotBackground = selectedDot.background as DotsGradientDrawable
           val nextDotBackground = nextDot.background as DotsGradientDrawable
@@ -132,6 +132,8 @@ class DotsIndicator @JvmOverloads constructor(context: Context, attrs: Attribute
               selectedDotBackground.setColor(selectedColor)
             }
           }
+        }else{
+
         }
 
         invalidate()
