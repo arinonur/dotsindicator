@@ -75,7 +75,7 @@ class DotsIndicator @JvmOverloads constructor(context: Context, attrs: Attribute
     }
 
     params.height = 20
-    params.width = 60
+    params.width = 80
     params.setMargins(dotsSpacing.toInt(), 0, dotsSpacing.toInt(), 0)
     val background = DotsGradientDrawable()
     background.cornerRadius = dotsCornerRadius
@@ -107,13 +107,13 @@ class DotsIndicator @JvmOverloads constructor(context: Context, attrs: Attribute
         val selectedDot = dots[selectedPosition]
         // Selected dot
         val selectedDotWidth = (dotsSize + dotsSize * (dotsWidthFactor - 1) * (1 - positionOffset)).toInt()
-        selectedDot.setWidth(100)
+        selectedDot.setWidth(80)
 
         if (dots.isInBounds(nextPosition)) {
           val nextDot = dots[nextPosition]
 
           val nextDotWidth = (dotsSize + dotsSize * (dotsWidthFactor - 1) * positionOffset).toInt()
-          nextDot.setWidth(60)
+          nextDot.setWidth(80)
 
           val selectedDotBackground = selectedDot.background as DotsGradientDrawable
           val nextDotBackground = nextDot.background as DotsGradientDrawable
